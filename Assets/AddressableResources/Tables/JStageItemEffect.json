@@ -1,0 +1,34 @@
+{
+  "list": [
+    {
+      "Id": 100,
+      "ItemType": "Stage",
+      "EffectType": "Speed",
+      "Value": 10
+    },
+    {
+      "Id": 101,
+      "ItemType": "Stage",
+      "EffectType": "Power",
+      "Value": 10
+    },
+    {
+      "Id": 102,
+      "ItemType": "Stage",
+      "EffectType": "Range",
+      "Value": 10
+    },
+    {
+      "Id": 103,
+      "ItemType": "Item",
+      "EffectType": "Coin",
+      "Value": 1
+    },
+    {
+      "Id": 104,
+      "ItemType": "Item",
+      "EffectType": "Gem",
+      "Value": 1
+    }
+  ]
+}

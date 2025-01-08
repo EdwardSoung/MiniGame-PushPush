@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI
+  m_EditorClassIdentifier: 
+  m_GroupName: UI
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 3115d9066d7b4c24e97374f1afcb7f51
+  m_SerializeEntries:
+  - m_GUID: a60a125d71228c2439c4243f94f11716
+    m_Address: UIPanelStage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8ecb626509181c4a9efa22df6b85994
+    m_Address: UIPanelIntro
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9646fdfdbdc1b6848b40bb13fb43f6c0
+    m_Address: UIPanelLoadingIntro
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c650c17ca1e3596449e012da25c3abfb
+    m_Address: UIPanelLobby
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2daafc1be0043ef49bddd1095741c34c
+    m_Address: Lobby_Cop
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1fe2133289ddb445ac88f9f02e4520d
+    m_Address: Lobby_Cowboy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3cb4d160757c9214fbf30344b2818c3a
+    m_Address: Lobby_Female01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8f31a905c882e8448d6854c3223b2a3
+    m_Address: Lobby_Female02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1353263dc39e1a440966c85effd1dd00
+    m_Address: UIPanelStageResult
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 738fe28fed7fa44478c2529094b2df51
+    m_Address: UIPanelPlayerList
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 916a5b862bdde234696c5b9b1f8f7307
+    m_Address: RewardItem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6e839e66f1f053248b2f6f478f7e6119
+    m_Address: UIPanelLoading
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6dfa6dffa44646b4c8077bcf619d9189
+    m_Address: PointItem_Crate
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8dfb73debaa6fe847bad5f88bc2e709f
+    m_Address: PointItem_Car
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed41810e35697c5489a32b35531e3d54
+    m_Address: PointItem_Plane
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b186e09efbee9f840a040f06ece30d40
+    m_Address: PointItem_Cone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a27fd004fb823a34a9ae690bdbfd496e, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 5edfaddaa9f42bd4c86510f6ab18d7f0, type: 2}
+    - {fileID: 11400000, guid: e77e57f0faf49d345908f15b118ef0e4, type: 2}

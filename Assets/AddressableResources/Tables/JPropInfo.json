@@ -1,0 +1,164 @@
+{
+  "list": [
+    {
+      "Id": 1,
+      "Mass": 5.0,
+      "PrefabName": "Crate_01",
+      "Point": 5,
+      "PropGroupId": 100,
+      "GenRate": 2500,
+      "UIPrefabName": "PointItem_Crate",
+      "MaterialName": "PolygonStarter_Mat_01"
+    },
+    {
+      "Id": 2,
+      "Mass": 5.5,
+      "PrefabName": "Crate_02",
+      "Point": 6,
+      "PropGroupId": 100,
+      "GenRate": 2000,
+      "UIPrefabName": "PointItem_Crate",
+      "MaterialName": "PolygonStarter_Mat_02"
+    },
+    {
+      "Id": 3,
+      "Mass": 5.2,
+      "PrefabName": "Crate_03",
+      "Point": 5,
+      "PropGroupId": 100,
+      "GenRate": 2500,
+      "UIPrefabName": "PointItem_Crate",
+      "MaterialName": "PolygonStarter_Mat_03"
+    },
+    {
+      "Id": 4,
+      "Mass": 4.8,
+      "PrefabName": "Crate_04",
+      "Point": 4,
+      "PropGroupId": 100,
+      "GenRate": 3000,
+      "UIPrefabName": "PointItem_Crate",
+      "MaterialName": "PolygonStarter_Mat_04"
+    },
+    {
+      "Id": 5,
+      "Mass": 1.5,
+      "PrefabName": "Cone_01",
+      "Point": 2,
+      "PropGroupId": 101,
+      "GenRate": 2500,
+      "UIPrefabName": "PointItem_Cone",
+      "MaterialName": "PolygonStarter_Mat_01"
+    },
+    {
+      "Id": 6,
+      "Mass": 1.2,
+      "PrefabName": "Cone_02",
+      "Point": 2,
+      "PropGroupId": 101,
+      "GenRate": 2500,
+      "UIPrefabName": "PointItem_Cone",
+      "MaterialName": "PolygonStarter_Mat_02"
+    },
+    {
+      "Id": 7,
+      "Mass": 1.0,
+      "PrefabName": "Cone_03",
+      "Point": 1,
+      "PropGroupId": 101,
+      "GenRate": 3000,
+      "UIPrefabName": "PointItem_Cone",
+      "MaterialName": "PolygonStarter_Mat_03"
+    },
+    {
+      "Id": 8,
+      "Mass": 1.8,
+      "PrefabName": "Cone_04",
+      "Point": 3,
+      "PropGroupId": 101,
+      "GenRate": 2000,
+      "UIPrefabName": "PointItem_Cone",
+      "MaterialName": "PolygonStarter_Mat_04"
+    },
+    {
+      "Id": 9,
+      "Mass": 10.0,
+      "PrefabName": "Car_01",
+      "Point": 10,
+      "PropGroupId": 102,
+      "GenRate": 5000,
+      "UIPrefabName": "PointItem_Car",
+      "MaterialName": "PolygonStarter_Mat_01"
+    },
+    {
+      "Id": 10,
+      "Mass": 12.0,
+      "PrefabName": "Car_02",
+      "Point": 11,
+      "PropGroupId": 102,
+      "GenRate": 2000,
+      "UIPrefabName": "PointItem_Car",
+      "MaterialName": "PolygonStarter_Mat_02"
+    },
+    {
+      "Id": 11,
+      "Mass": 13.5,
+      "PrefabName": "Car_03",
+      "Point": 12,
+      "PropGroupId": 102,
+      "GenRate": 2000,
+      "UIPrefabName": "PointItem_Car",
+      "MaterialName": "PolygonStarter_Mat_03"
+    },
+    {
+      "Id": 12,
+      "Mass": 15.0,
+      "PrefabName": "Car_04",
+      "Point": 13,
+      "PropGroupId": 102,
+      "GenRate": 1000,
+      "UIPrefabName": "PointItem_Car",
+      "MaterialName": "PolygonStarter_Mat_04"
+    },
+    {
+      "Id": 13,
+      "Mass": 20.0,
+      "PrefabName": "Plane_01",
+      "Point": 30,
+      "PropGroupId": 103,
+      "GenRate": 5000,
+      "UIPrefabName": "PointItem_Plane",
+      "MaterialName": "PolygonStarter_Mat_Plane_01"
+    },
+    {
+      "Id": 14,
+      "Mass": 22.0,
+      "PrefabName": "Plane_02",
+      "Point": 34,
+      "PropGroupId": 103,
+      "GenRate": 3500,
+      "UIPrefabName": "PointItem_Plane",
+      "MaterialName": "PolygonStarter_Mat_Plane_02"
+    },
+    {
+      "Id": 15,
+      "Mass": 23.5,
+      "PrefabName": "Plane_03",
+      "Point": 36,
+      "PropGroupId": 103,
+      "GenRate": 1000,
+      "UIPrefabName": "PointItem_Plane",
+      "MaterialName": "PolygonStarter_Mat_Plane_03"
+    },
+    {
+      "Id": 16,
+      "Mass": 25.0,
+      "PrefabName": "Plane_04",
+      "Point": 40,
+      "PropGroupId": 103,
+      "GenRate": 500,
+      "UIPrefabName": "PointItem_Plane",
+      "MaterialName": "PolygonStarter_Mat_Plane_04"
+    }
+  ]
+}

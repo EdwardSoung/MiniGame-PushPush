@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Props
+  m_EditorClassIdentifier: 
+  m_GroupName: Props
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e411647c61a75f848b33e8d1d72562af
+  m_SerializeEntries:
+  - m_GUID: d6e2601c4f144db459adb4f5e7affc65
+    m_Address: Car_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5527826a6315a224d850675a730c4f62
+    m_Address: Crate_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68eae0078d28b9d48bc61656880bdf5f
+    m_Address: Car_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 548b4dbf5bb6de04d85958c762647bf7
+    m_Address: Car_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3784d26b12d13a74ab9afa99cfea685f
+    m_Address: Car_04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 37e681eb08549004c9d9c2be529cbf54
+    m_Address: Cone_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef677c65b4dfdd44ebc94ccfe080198a
+    m_Address: Cone_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a98680739a04d5b41a6da75ed1268ccb
+    m_Address: Cone_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cd1292d32475fca48a5fe3ff47cddcee
+    m_Address: Cone_04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 184f13d29c849304a89b32f159afe86e
+    m_Address: Crate_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3bdde3a98e1c7c49a13c18e85898846
+    m_Address: Crate_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4618652b215d79940bebfd1702bcee6e
+    m_Address: Crate_04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bbea6872df405a045862b0d1f277c5ac
+    m_Address: Plane_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79d610ee82cdb9f44a7c686cce395caa
+    m_Address: Plane_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 21c9bc0b9f916b74ebf3bd0695d59f20
+    m_Address: Plane_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9b47509b4a59874482d7acb79c9fd01
+    m_Address: Plane_04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2d9674097da42b2448220c5e2805bb27
+    m_Address: PolygonStarter_Mat_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 382781f3eb846ba4992cfb4e635c76ed
+    m_Address: PolygonStarter_Mat_04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6a5181c39f2ce4408030b9c2d1b47e2
+    m_Address: PolygonStarter_Mat_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd41db2cdb4e66e4985303e1287ab101
+    m_Address: PolygonStarter_Mat_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 940d4c7d3d8f0ff4aab297e184fe9ffd
+    m_Address: PolygonStarter_Mat_Plane_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dce3a789f595f224a85f5cf4f2e6667d
+    m_Address: PolygonStarter_Mat_Plane_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 40b5b1cfe73d4444eb7e750bd8e3f90a
+    m_Address: PolygonStarter_Mat_Plane_04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a34e2e9511ab63041850d60a4868cfcf
+    m_Address: PolygonStarter_Mat_Plane_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a27fd004fb823a34a9ae690bdbfd496e, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7551eb49000373949ad95de514859526, type: 2}
+    - {fileID: 11400000, guid: a020bc537dcc2564b965839e931ddae4, type: 2}

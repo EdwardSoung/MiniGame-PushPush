@@ -1,0 +1,28 @@
+{
+  "list": [
+    {
+      "Id": 1,
+      "GroupId": 100,
+      "Prob": 3500,
+      "PropType": "Basic"
+    },
+    {
+      "Id": 2,
+      "GroupId": 101,
+      "Prob": 6500,
+      "PropType": "Basic"
+    },
+    {
+      "Id": 3,
+      "GroupId": 102,
+      "Prob": 5000,
+      "PropType": "Car"
+    },
+    {
+      "Id": 4,
+      "GroupId": 103,
+      "Prob": 2000,
+      "PropType": "Plane"
+    }
+  ]
+}

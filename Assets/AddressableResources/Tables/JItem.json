@@ -1,0 +1,12 @@
+{
+  "list": [
+    {
+      "Id": 1,
+      "ResourceName": "Icon_Coin"
+    },
+    {
+      "Id": 2,
+      "ResourceName": "Icon_Gem"
+    }
+  ]
+}

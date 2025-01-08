@@ -1,0 +1,36 @@
+{
+  "list": [
+    {
+      "Id": 1,
+      "Str": 50,
+      "Range": 2.0,
+      "Speed": 3.0,
+      "PrefabName": "Player_Cop",
+      "UIPrefabName": "Lobby_Cop"
+    },
+    {
+      "Id": 2,
+      "Str": 55,
+      "Range": 2.5,
+      "Speed": 2.5,
+      "PrefabName": "Player_Cowboy",
+      "UIPrefabName": "Lobby_Cowboy"
+    },
+    {
+      "Id": 3,
+      "Str": 45,
+      "Range": 2.8,
+      "Speed": 2.5,
+      "PrefabName": "Player_Female01",
+      "UIPrefabName": "Lobby_Female01"
+    },
+    {
+      "Id": 4,
+      "Str": 40,
+      "Range": 2.5,
+      "Speed": 2.8,
+      "PrefabName": "Player_Female02",
+      "UIPrefabName": "Lobby_Female02"
+    }
+  ]
+}

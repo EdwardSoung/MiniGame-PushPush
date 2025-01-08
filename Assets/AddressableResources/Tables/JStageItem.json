@@ -1,0 +1,29 @@
+{
+  "list": [
+    {
+      "Id": 1,
+      "PrefabName": "StageItem_Speed",
+      "EffectId": 100
+    },
+    {
+      "Id": 2,
+      "PrefabName": "StageItem_Power",
+      "EffectId": 101
+    },
+    {
+      "Id": 3,
+      "PrefabName": "StageItem_Range",
+      "EffectId": 102
+    },
+    {
+      "Id": 4,
+      "PrefabName": "StageItem_Coin",
+      "EffectId": 103
+    },
+    {
+      "Id": 5,
+      "PrefabName": "StageItem_Gem",
+      "EffectId": 104
+    }
+  ]
+}
