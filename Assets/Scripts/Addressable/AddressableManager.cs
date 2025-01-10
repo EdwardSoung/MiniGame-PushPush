@@ -1,4 +1,3 @@
-using FirstVillain.Singleton;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
 using UnityEngine.Pool;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using XUnityLibrary.Singleton;
 
 public class AddressableManager : UnitySingleton<AddressableManager>
 {

@@ -1,8 +1,6 @@
-using FirstVillain.Converter;
-using FirstVillain.EventBus;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using XUnityLibrary.Converter;
+using XUnityLibrary.EventBus;
 
 public class EventLoadAssets : EventBase
 {
@@ -22,7 +20,7 @@ public class EventLoadTable<T> : EventBase
 public class EventUpdateTableLadingProgress : EventBase
 {
     public float Progress { get; private set; }
-    
+
     public EventUpdateTableLadingProgress(float progress)
     {
         Progress = progress;

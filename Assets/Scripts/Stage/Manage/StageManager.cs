@@ -1,9 +1,9 @@
 using FirstVillain.Entities;
 using FirstVillain.EventBus;
-using FirstVillain.Singleton;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XUnityLibrary.Singleton;
 
 public class StageManager : UnitySingletonOnce<StageManager>
 {

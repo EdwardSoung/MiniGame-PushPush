@@ -1,8 +1,7 @@
 using FirstVillain.Entities;
-using FirstVillain.Singleton;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XUnityLibrary.Singleton;
 
 public class GameManager : UnitySingleton<GameManager>
 {

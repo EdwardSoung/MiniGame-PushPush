@@ -1,9 +1,6 @@
-using FirstVillain.EventBus;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using XUnityLibrary.EventBus;
 
 public class UIPanelIntro : UIBase
 {

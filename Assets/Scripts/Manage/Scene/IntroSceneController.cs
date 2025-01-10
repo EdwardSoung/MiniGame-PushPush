@@ -1,11 +1,7 @@
-using FirstVillain.Converter;
 using FirstVillain.Entities;
-using FirstVillain.EventBus;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
+using XUnityLibrary.EventBus;
 
 public class IntroSceneController : MonoBehaviour
 {

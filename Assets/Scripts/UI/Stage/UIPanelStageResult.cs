@@ -1,12 +1,8 @@
-using FirstVillain.Entities;
-using FirstVillain.EventBus;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
+using XUnityLibrary.EventBus;
 
 public class UIPanelStageResult : UIBase
 {

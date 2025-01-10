@@ -1,4 +1,4 @@
-using FirstVillain.EventBus;
+using XUnityLibrary.EventBus;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

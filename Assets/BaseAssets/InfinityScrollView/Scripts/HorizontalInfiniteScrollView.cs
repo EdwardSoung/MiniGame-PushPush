@@ -1,0 +1,122 @@
+﻿using System.Collections;
+using UnityEngine;
+namespace FirstVillain.ScrollView
+{
+    public class HorizontalInfiniteScrollView : InfiniteScrollView
+    {
+        [SerializeField] private bool _isAtLeft = true;
+        [SerializeField] private bool _isAtRight = true;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            _isAtLeft = true;
+            _isAtRight = true;
+        }
+
+        protected override void OnValueChanged(Vector2 normalizedPosition)
+        {
+            if (_dataList.Count == 0)
+                return;
+            float viewportInterval = _scrollRect.viewport.rect.width;
+            float minViewport = -_scrollRect.content.anchoredPosition.x;
+            Vector2 viewportRange = new Vector2(minViewport - _extendVisibleRange, minViewport + viewportInterval + _extendVisibleRange);
+            float contentWidth = _padding.x;
+            for (int i = 0; i < _dataList.Count; i++)
+            {
+                var visibleRange = new Vector2(contentWidth, contentWidth + _dataList[i].CellSize.x);
+                if (visibleRange.y < viewportRange.x || visibleRange.x > viewportRange.y)
+                {
+                    RecycleCell(i);
+                }
+                contentWidth += _dataList[i].CellSize.x + _spacing;
+            }
+            contentWidth = _padding.x;
+            for (int i = 0; i < _dataList.Count; i++)
+            {
+                var visibleRange = new Vector2(contentWidth, contentWidth + _dataList[i].CellSize.x);
+                if (visibleRange.y >= viewportRange.x && visibleRange.x <= viewportRange.y)
+                {
+                    SetupCell(i, new Vector2(contentWidth, 0));
+                    if (visibleRange.y >= viewportRange.x)
+                        _cellList[i].transform.SetAsLastSibling();
+                    else
+                        _cellList[i].transform.SetAsFirstSibling();
+                }
+                contentWidth += _dataList[i].CellSize.x + _spacing;
+            }
+            if (_scrollRect.content.sizeDelta.x > viewportInterval)
+            {
+                _isAtLeft = viewportRange.x + _extendVisibleRange <= _dataList[0].CellSize.x;
+                _isAtRight = _scrollRect.content.sizeDelta.x - viewportRange.y + _extendVisibleRange <= _dataList[_dataList.Count - 1].CellSize.x;
+            }
+            else
+            {
+                _isAtLeft = true;
+                _isAtRight = true;
+            }
+        }
+
+        public sealed override void Refresh()
+        {
+            if (!IsInitialized)
+            {
+                Initialize();
+            }
+            if (_scrollRect.viewport.rect.width == 0)
+                StartCoroutine(DelayToRefresh());
+            else
+                DoRefresh();
+        }
+
+        private void DoRefresh()
+        {
+            float width = _padding.x;
+            for (int i = 0; i < _dataList.Count; i++)
+            {
+                width += _dataList[i].CellSize.x + _spacing;
+            }
+            for (int i = 0; i < _cellList.Count; i++)
+            {
+                RecycleCell(i);
+            }
+            width += _padding.y;
+            _scrollRect.content.sizeDelta = new Vector2(width, _scrollRect.content.sizeDelta.y);
+            OnValueChanged(_scrollRect.normalizedPosition);
+            OnRefresh?.Invoke();
+        }
+
+        private IEnumerator DelayToRefresh()
+        {
+            yield return _waitEndOfFrame;
+            DoRefresh();
+        }
+
+        public override void Snap(int index, float duration)
+        {
+            if (!IsInitialized)
+                return;
+            if (index >= _dataList.Count)
+                return;
+            if (_scrollRect.content.rect.width < _scrollRect.viewport.rect.width)
+                return;
+            float width = _padding.x;
+            for (int i = 0; i < index; i++)
+            {
+                width += _dataList[i].CellSize.x + _spacing;
+            }
+            width = Mathf.Min(_scrollRect.content.rect.width - _scrollRect.viewport.rect.width, width);
+            if (_scrollRect.content.anchoredPosition.x != width)
+            {
+                DoSnapping(new Vector2(-width, 0), duration);
+            }
+        }
+
+        public override void Remove(int index)
+        {
+            var removeCell = _dataList[index];
+            base.Remove(index);
+            _scrollRect.content.anchoredPosition -= new Vector2(removeCell.CellSize.x + _spacing, 0);
+        }
+    }
+}

@@ -1,10 +1,8 @@
-using FirstVillain.EventBus;
-using FirstVillain.Singleton;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using XUnityLibrary.EventBus;
+using XUnityLibrary.Singleton;
 
 public class UIManager : UnitySingleton<UIManager>
 {
