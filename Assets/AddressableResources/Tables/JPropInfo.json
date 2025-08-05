@@ -7,7 +7,7 @@
       "Point": 5,
       "PropGroupId": 100,
       "GenRate": 2500,
-      "UIPrefabName": "PointItem_Crate",
+      "UIPrefabName": "ResultItem_Crate",
       "MaterialName": "PolygonStarter_Mat_01"
     },
     {
@@ -17,7 +17,7 @@
       "Point": 6,
       "PropGroupId": 100,
       "GenRate": 2000,
-      "UIPrefabName": "PointItem_Crate",
+      "UIPrefabName": "ResultItem_Crate",
       "MaterialName": "PolygonStarter_Mat_02"
     },
     {
@@ -27,7 +27,7 @@
       "Point": 5,
       "PropGroupId": 100,
       "GenRate": 2500,
-      "UIPrefabName": "PointItem_Crate",
+      "UIPrefabName": "ResultItem_Crate",
       "MaterialName": "PolygonStarter_Mat_03"
     },
     {
@@ -37,7 +37,7 @@
       "Point": 4,
       "PropGroupId": 100,
       "GenRate": 3000,
-      "UIPrefabName": "PointItem_Crate",
+      "UIPrefabName": "ResultItem_Crate",
       "MaterialName": "PolygonStarter_Mat_04"
     },
     {
@@ -47,7 +47,7 @@
       "Point": 2,
       "PropGroupId": 101,
       "GenRate": 2500,
-      "UIPrefabName": "PointItem_Cone",
+      "UIPrefabName": "ResultItem_Cone",
       "MaterialName": "PolygonStarter_Mat_01"
     },
     {
@@ -57,7 +57,7 @@
       "Point": 2,
       "PropGroupId": 101,
       "GenRate": 2500,
-      "UIPrefabName": "PointItem_Cone",
+      "UIPrefabName": "ResultItem_Cone",
       "MaterialName": "PolygonStarter_Mat_02"
     },
     {
@@ -67,7 +67,7 @@
       "Point": 1,
       "PropGroupId": 101,
       "GenRate": 3000,
-      "UIPrefabName": "PointItem_Cone",
+      "UIPrefabName": "ResultItem_Cone",
       "MaterialName": "PolygonStarter_Mat_03"
     },
     {
@@ -77,7 +77,7 @@
       "Point": 3,
       "PropGroupId": 101,
       "GenRate": 2000,
-      "UIPrefabName": "PointItem_Cone",
+      "UIPrefabName": "ResultItem_Cone",
       "MaterialName": "PolygonStarter_Mat_04"
     },
     {
@@ -87,7 +87,7 @@
       "Point": 10,
       "PropGroupId": 102,
       "GenRate": 5000,
-      "UIPrefabName": "PointItem_Car",
+      "UIPrefabName": "ResultItem_Car",
       "MaterialName": "PolygonStarter_Mat_01"
     },
     {
@@ -97,7 +97,7 @@
       "Point": 11,
       "PropGroupId": 102,
       "GenRate": 2000,
-      "UIPrefabName": "PointItem_Car",
+      "UIPrefabName": "ResultItem_Car",
       "MaterialName": "PolygonStarter_Mat_02"
     },
     {
@@ -107,7 +107,7 @@
       "Point": 12,
       "PropGroupId": 102,
       "GenRate": 2000,
-      "UIPrefabName": "PointItem_Car",
+      "UIPrefabName": "ResultItem_Car",
       "MaterialName": "PolygonStarter_Mat_03"
     },
     {
@@ -117,7 +117,7 @@
       "Point": 13,
       "PropGroupId": 102,
       "GenRate": 1000,
-      "UIPrefabName": "PointItem_Car",
+      "UIPrefabName": "ResultItem_Car",
       "MaterialName": "PolygonStarter_Mat_04"
     },
     {
@@ -127,7 +127,7 @@
       "Point": 30,
       "PropGroupId": 103,
       "GenRate": 5000,
-      "UIPrefabName": "PointItem_Plane",
+      "UIPrefabName": "ResultItem_Plane",
       "MaterialName": "PolygonStarter_Mat_Plane_01"
     },
     {
@@ -137,7 +137,7 @@
       "Point": 34,
       "PropGroupId": 103,
       "GenRate": 3500,
-      "UIPrefabName": "PointItem_Plane",
+      "UIPrefabName": "ResultItem_Plane",
       "MaterialName": "PolygonStarter_Mat_Plane_02"
     },
     {
@@ -147,7 +147,7 @@
       "Point": 36,
       "PropGroupId": 103,
       "GenRate": 1000,
-      "UIPrefabName": "PointItem_Plane",
+      "UIPrefabName": "ResultItem_Plane",
       "MaterialName": "PolygonStarter_Mat_Plane_03"
     },
     {
@@ -157,7 +157,7 @@
       "Point": 40,
       "PropGroupId": 103,
       "GenRate": 500,
-      "UIPrefabName": "PointItem_Plane",
+      "UIPrefabName": "ResultItem_Plane",
       "MaterialName": "PolygonStarter_Mat_Plane_04"
     }
   ]
