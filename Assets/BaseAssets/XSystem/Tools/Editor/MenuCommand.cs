@@ -9,7 +9,7 @@ public static class MenuCommand
     [MenuItem("Tools/Convert/ExcelToJson", priority = 999)]
     public static void ConvertExcelToJson()
     {
-        var tablePath = Application.dataPath.Replace("Assets", "TableData");
+        var tablePath = Application.dataPath.Replace("Assets", "Table");
         var jsonPath = Path.Combine(Application.dataPath, "AddressableResources", "Tables");
         var entityPath = Path.Combine(Application.dataPath, "Scripts", "Entities");
 
