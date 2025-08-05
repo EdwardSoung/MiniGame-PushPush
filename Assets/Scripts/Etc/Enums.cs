@@ -41,6 +41,14 @@ public enum E_UI_TYPE
     UIPanelLobby = 200,
     UIPanelPlayerList,
 }
+
+public enum E_REWARD_TYPE
+{
+    Reward_Energy,
+    Reward_Gold,
+    Reward_Gem,
+    Reward_Box
+}
 #endregion UI
 
 #region Table
@@ -53,5 +61,6 @@ public enum E_TABLE
     JStageItemEffect,
     JStageReward,
     JItem,
+    JRewardGroup,
 }
 #endregion Table

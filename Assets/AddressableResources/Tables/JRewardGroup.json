@@ -1,0 +1,88 @@
+{
+  "list": [
+    {
+      "Id": 1,
+      "GroupId": 101,
+      "Type": 1,
+      "ItemId": 1,
+      "Amount": 5
+    },
+    {
+      "Id": 2,
+      "GroupId": 102,
+      "Type": 1,
+      "ItemId": 1,
+      "Amount": 10
+    },
+    {
+      "Id": 3,
+      "GroupId": 103,
+      "Type": 1,
+      "ItemId": 1,
+      "Amount": 15
+    },
+    {
+      "Id": 4,
+      "GroupId": 104,
+      "Type": 1,
+      "ItemId": 1,
+      "Amount": 20
+    },
+    {
+      "Id": 5,
+      "GroupId": 105,
+      "Type": 1,
+      "ItemId": 1,
+      "Amount": 25
+    },
+    {
+      "Id": 6,
+      "GroupId": 106,
+      "Type": 1,
+      "ItemId": 1,
+      "Amount": 30
+    },
+    {
+      "Id": 7,
+      "GroupId": 107,
+      "Type": 1,
+      "ItemId": 1,
+      "Amount": 40
+    },
+    {
+      "Id": 8,
+      "GroupId": 108,
+      "Type": 1,
+      "ItemId": 1,
+      "Amount": 45
+    },
+    {
+      "Id": 9,
+      "GroupId": 109,
+      "Type": 1,
+      "ItemId": 1,
+      "Amount": 50
+    },
+    {
+      "Id": 10,
+      "GroupId": 110,
+      "Type": 1,
+      "ItemId": 1,
+      "Amount": 55
+    },
+    {
+      "Id": 11,
+      "GroupId": 111,
+      "Type": 1,
+      "ItemId": 1,
+      "Amount": 60
+    },
+    {
+      "Id": 12,
+      "GroupId": 112,
+      "Type": 1,
+      "ItemId": 1,
+      "Amount": 65
+    }
+  ]
+}

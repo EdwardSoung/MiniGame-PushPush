@@ -12,13 +12,17 @@ namespace FirstVillain.Entities
 {
     
     
-    public class JStageRewardData
+    public class JRewardGroupData
     {
         
         public int Id;
         
-        public int Point;
+        public int GroupId;
         
-        public int RewardGroup;
+        public int Type;
+        
+        public int ItemId;
+        
+        public int Amount;
     }
 }

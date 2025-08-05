@@ -13,17 +13,15 @@ MonoBehaviour:
   m_Name: Tables
   m_EditorClassIdentifier: 
   m_GroupName: Tables
-  m_Data:
-    m_SerializedData: []
   m_GUID: 4855deeddf1257e449608c5a8e0e9c97
   m_SerializeEntries:
-  - m_GUID: b41a7544effc36244a6deb15f55889be
-    m_Address: JPropInfo
+  - m_GUID: 00d04986c3c80f649a404910ffa333e9
+    m_Address: JRewardGroup
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e5c8e53bdb2364549800184c7cafe645
-    m_Address: JPlayer
+  - m_GUID: 4c9af0a618699a946a6ec8fe0f2a4536
+    m_Address: JItem
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -37,13 +35,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: df2b37b02cfcf4148b9ef1434a90f4ec
-    m_Address: JStageItemEffect
+  - m_GUID: b41a7544effc36244a6deb15f55889be
+    m_Address: JPropInfo
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bf99d73159e4e3a46a1c3b76e56ab70c
     m_Address: JStageReward
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df2b37b02cfcf4148b9ef1434a90f4ec
+    m_Address: JStageItemEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5c8e53bdb2364549800184c7cafe645
+    m_Address: JPlayer
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

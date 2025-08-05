@@ -1,6 +1,7 @@
 using FirstVillain.Entities;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using XUnityLibrary.Converter;
 using XUnityLibrary.Singleton;
@@ -61,4 +62,49 @@ public class TableManager : UnitySingleton<TableManager>
         return list.Find(arg => arg.Id == id);
     }
     #endregion Stage Item
+
+    #region StageReward
+
+    public JStageRewardData GetStageReward(int point)
+    {
+        var list = LoadTableAsset<JStageRewardData>(E_TABLE.JStageReward).list;
+
+        JStageRewardData curReward = null;
+
+        foreach (var reward in list)
+        {
+            curReward = reward;
+
+            if(point < reward.Point)
+            {
+                break;
+            }
+        }
+
+        return curReward;
+    }
+
+    #endregion StageReward
+
+    #region Reward Group
+
+    public List<JRewardGroupData> GetRewardsByGroupId(int groupId)
+    {
+        var list = LoadTableAsset<JRewardGroupData>(E_TABLE.JRewardGroup).list;
+
+        return list.Where(x => x.GroupId == groupId).ToList();
+    }
+
+    #endregion Reward Group
+
+    #region Item
+
+    public JItemData GetItem(int id)
+    {
+        var list = LoadTableAsset<JItemData>(E_TABLE.JItem).list;
+
+        return list.Find(x => x.Id == id);
+    }
+
+    #endregion Item
 }
