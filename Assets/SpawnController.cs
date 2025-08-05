@@ -159,7 +159,7 @@ public class SpawnController : MonoBehaviour
     }
     private PropController SelectProp(string type, Transform parent = null)
     {
-        var rateTable = TableManager.Instance.GetProbByType(type);
+        var rateTable = TableManager.Instance.GetProbRateByType(type);
 
         int curProb = 0;
         int rnd = Random.Range(0, 10000);
