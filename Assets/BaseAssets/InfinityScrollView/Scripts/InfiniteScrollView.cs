@@ -1,181 +1,491 @@
-﻿using System;
-using System.Collections;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Pool;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace FirstVillain.ScrollView
+[RequireComponent(typeof(ScrollRect))]
+public abstract class InfiniteScrollView : UIBehaviour
 {
-    [RequireComponent(typeof(ScrollRect))]
-    public abstract class InfiniteScrollView : UIBehaviour
+    private readonly CompositeDisposable _subscribers = new();
+
+    public struct InfiniteCellData
     {
-        [SerializeField] private int _cellPoolSize = 20;
-        [SerializeField] protected float _spacing = 0f;
-        [SerializeField] protected Vector2 _padding;
-        [SerializeField] protected float _extendVisibleRange;
+        public Vector2 cellSize;
 
-        [SerializeField] private InfiniteCell _cellPrefab;
-        [SerializeField] protected ScrollRect _scrollRect;
-        
-        protected List<InfiniteCellData> _dataList = new List<InfiniteCellData>();
-        protected List<InfiniteCell> _cellList = new List<InfiniteCell>();
-        protected Queue<InfiniteCell> _cellPool = new Queue<InfiniteCell>();
-        protected YieldInstruction _waitEndOfFrame = new WaitForEndOfFrame();
-        private Coroutine _snappingProcesser;
-
-        public event Action OnRectTransformUpdate;
-        public event Action<GameObject> OnCellSelected;
-        public Action OnRefresh;
-
-        public bool IsInitialized
+        public InfiniteCellData(float x, float y)
         {
-            get;
-            private set;
+            this.cellSize = new Vector2(x, y);
         }
 
-        public virtual void Initialize()
+        public InfiniteCellData(Vector2 cellSize)
         {
-            if (IsInitialized)
-                return;
-            _scrollRect = GetComponent<ScrollRect>();
-            _scrollRect.onValueChanged.AddListener(OnValueChanged);
-            for (int i = 0; i < _cellPoolSize; i++)
+            this.cellSize = cellSize;
+        }
+    }
+
+    protected bool IsInitialized = false;
+
+    [SerializeField] private int cellPoolSize = 20;
+
+    [SerializeField] protected float spacing = 0f;
+    [FormerlySerializedAs("padding")][SerializeField] protected Vector2 paddingLT;
+    [SerializeField] protected Vector2 paddingRB;
+    [SerializeField] protected float extendVisibleRange;
+
+    private ObjectPool<Cell_Base> cellPooling;
+    [SerializeField] private Cell_Base cellPrefab;
+
+    [SerializeField] protected bool useFirstOpenCellFx;
+
+    [Tooltip("Cell 전체연출시간")][Min(0.1f)][SerializeField] protected float OpenCellFxDurationSec;
+
+    protected ScrollRect scrollRect;
+    protected readonly List<InfiniteCellData> dataList = new();
+
+    protected readonly Dictionary<int, Cell_Base> _dicIndexToCell = new();
+    protected readonly Dictionary<Cell_Base, int> _dicCellToIndex = new();
+
+    private readonly Subject<(int, Cell_Base)> _eventCellUpdateSubject = new();
+    public IObservable<(int, Cell_Base)> EventCellUpdateTrigger => _eventCellUpdateSubject;
+
+    private readonly Subject<(int, Cell_Base)> _eventCellClickSubject = new();
+    public IObservable<(int, Cell_Base)> EventCellClickTrigger => _eventCellClickSubject;
+
+    private readonly Subject<(int, Cell_Base)> _eventCellClickDownSubject = new();
+    public IObservable<(int, Cell_Base)> EventCellClickDownTrigger => _eventCellClickDownSubject;
+
+    private readonly Subject<(int, Cell_Base)> _eventCellClickUpSubject = new();
+    public IObservable<(int, Cell_Base)> EventCellClickUpTrigger => _eventCellClickUpSubject;
+
+    private CancellationTokenSource snappingCts = new();
+
+    public Vector2 GetPrefabBoundSize => cellPrefab.RectTransform.rect.size;
+    public Cell_Base GetPrefab => cellPrefab;
+    public float Spacing => spacing;
+    public ScrollRect ScrollRect => scrollRect;
+    public int GetDataCount => dataList.Count;
+    public Vector2 PaddingLT => paddingLT;
+    public Vector2 PaddingRB => paddingRB;
+
+    protected bool _isFirstOpen;
+    protected CompositeDisposable _subscribeCellFx = new();
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        if (IsInitialized == false)
+            Initialize();
+
+        else
+            OnOpenFx();
+    }
+
+    protected virtual void Initialize()
+    {
+        scrollRect = GetComponent<ScrollRect>();
+        scrollRect.OnValueChangedAsObservable()
+                  .Subscribe(OnValueChanged)
+                  .AddTo(_subscribers);
+
+        scrollRect.SetLayoutHorizontal();
+        scrollRect.SetLayoutVertical();
+
+        cellPooling = new ObjectPool<Cell_Base>(
+        () =>
+        {
+            var cellBase = Instantiate(cellPrefab, scrollRect.content);
+
+            SetPivotAndAnchor(cellBase);
+
+            cellBase.OnEventClickTrigger.Subscribe(cellBase =>
             {
-                var newCell = Instantiate(_cellPrefab, _scrollRect.content);
-                newCell.gameObject.SetActive(false);
-                _cellPool.Enqueue(newCell);
+                _eventCellClickSubject.OnNext((_dicCellToIndex[cellBase], cellBase));
+
+            }).AddTo(_subscribers);
+
+            cellBase.OnEventPointerDownTrigger.Subscribe(cellBase =>
+            {
+                _eventCellClickDownSubject.OnNext((_dicCellToIndex[cellBase], cellBase));
+
+            }).AddTo(_subscribers);
+
+            cellBase.OnEventPointerUpTrigger.Subscribe(cellBase =>
+            {
+                _eventCellClickUpSubject.OnNext((_dicCellToIndex[cellBase], cellBase));
+
+            }).AddTo(_subscribers);
+
+
+            return cellBase;
+        },
+        go =>
+        {
+            go.gameObject.SetActive(true);
+        },
+        go =>
+        {
+            go.gameObject.SetActive(false);
+        },
+        go =>
+        {
+            Destroy(go.gameObject);
+        }
+        , false, 10, cellPoolSize);
+
+        IsInitialized = true;
+        _isFirstOpen = true;
+    }
+
+    protected override void OnDestroy()
+    {
+        _subscribers.Dispose();
+
+        dataList.Clear();
+
+        _dicIndexToCell.Clear();
+        _dicCellToIndex.Clear();
+
+        cellPooling?.Dispose();
+        cellPooling = null;
+
+        _eventCellClickSubject.Dispose();
+
+        _eventCellUpdateSubject.Dispose();
+
+        _eventCellClickDownSubject.Dispose();
+
+        _eventCellClickUpSubject.Dispose();
+
+        snappingCts.Cancel();
+        snappingCts.Dispose();
+
+        _subscribeCellFx.Dispose();
+
+        base.OnDestroy();
+    }
+
+    protected abstract void OnValueChanged(Vector2 normalizedPosition);
+
+    public abstract void Refresh();
+
+    public abstract void SetPivotAndAnchor(Cell_Base cell);
+
+    protected abstract void DoSnap(int index, float duration, bool center, float offset, bool isReverse = false);
+
+    protected abstract void DoSnap(float width, float duration);
+
+    public void CellRefreshUpdate()
+    {
+        if (IsInitialized == false)
+            Initialize();
+
+        foreach (var item in _dicIndexToCell)
+            _eventCellUpdateSubject.OnNext((item.Key, item.Value));
+    }
+
+    public IEnumerable<(int, Cell_Base)> GetCells()
+    {
+        foreach (var cell in _dicIndexToCell)
+            yield return (cell.Key, cell.Value);
+    }
+
+    public void CellRefreshUpdateAtIndex(int index)
+    {
+        if (IsInitialized == false)
+            Initialize();
+
+        if (index < 0)
+            return;
+
+        if (_dicIndexToCell.TryGetValue(index, out var cell))
+        {
+            _eventCellUpdateSubject.OnNext((index, cell));
+        }
+    }
+
+    public void CellRefrshSelectAtIndex(int index)
+    {
+        if (IsInitialized == false)
+            Initialize();
+
+        if (_dicIndexToCell.TryGetValue(index, out var cell))
+        {
+            _eventCellClickSubject.OnNext((index, cell));
+        }
+    }
+
+    public void Add(Vector2 cellSize)
+    {
+        Add(new InfiniteCellData(cellSize));
+    }
+
+    public void Add(InfiniteCellData data)
+    {
+        if (IsInitialized == false)
+            Initialize();
+
+        dataList.Add(data);
+    }
+
+    public void AddAt(int index, Vector2 cellSize)
+    {
+        AddAt(index, new InfiniteCellData(cellSize));
+    }
+
+    public void AddAt(int index, InfiniteCellData data)
+    {
+        if (IsInitialized == false)
+            Initialize();
+
+        dataList.Insert(index, data);
+    }
+
+    public void Remove(int index, int count)
+    {
+        if (IsInitialized == false)
+            Initialize();
+
+        if (dataList.Count <= index)
+            return;
+
+        var maxIndex = index + count;
+        if (maxIndex > dataList.Count)
+        {
+            count -= maxIndex - dataList.Count;
+        }
+
+        for (int i = 0; i < count; ++i)
+        {
+            dataList.RemoveAt(index);
+            RecycleCell(index);
+        }
+    }
+
+    public virtual void Remove(int index)
+    {
+        if (IsInitialized == false)
+            Initialize();
+
+        if (dataList.Count == 0)
+            return;
+
+        dataList.RemoveAt(index);
+        RecycleCell(index);
+
+        Refresh();
+    }
+
+    public abstract bool IsVisbibleCell(int index);
+
+    public int GetVisibleCellCount()
+    {
+        Vector2 cellSize = cellPrefab.RectTransform.rect.size;
+        RectTransform viewPort = scrollRect.viewport;
+        int visibleColumnDataCount = (int)(viewPort.rect.width / (cellSize.x + spacing));
+        int visibleRowDataCount = (int)(viewPort.rect.height / (cellSize.y + spacing));
+
+        return visibleColumnDataCount * visibleRowDataCount;
+    }
+
+    public void SnapLast(float duration)
+    {
+        Snap(dataList.Count - 1, duration);
+    }
+
+    protected virtual void DoSnapping(Vector2 target, float duration)
+    {
+        if (gameObject.activeInHierarchy == false)
+            return;
+
+        ProcessSnapping(target, duration).Forget();
+    }
+
+    private async UniTask ProcessSnapping(Vector2 target, float duration)
+    {
+        if (duration == 0f)
+        {
+            scrollRect.content.anchoredPosition = target;
+            OnValueChanged(scrollRect.normalizedPosition);
+            return;
+        }
+
+        snappingCts.Cancel();
+        snappingCts.Dispose();
+        snappingCts = new CancellationTokenSource();
+
+        scrollRect.velocity = Vector2.zero;
+        Vector2 startPos = scrollRect.content.anchoredPosition;
+
+        float t = 0;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / duration;
+
+            scrollRect.content.anchoredPosition = Vector2.Lerp(startPos, target, t);
+
+            var normalizedPos = scrollRect.normalizedPosition;
+
+            if (normalizedPos.y < 0 || normalizedPos.x > 1)
+                break;
+
+            if (t >= 1f)
+                break;
+
+            await UniTask.Yield(PlayerLoopTiming.Update, snappingCts.Token);
+        }
+    }
+
+    protected void TryOffOpenFx()
+    {
+        if (useFirstOpenCellFx && _subscribeCellFx.Count > 0)
+        {
+            _subscribeCellFx.Dispose();
+            _isFirstOpen = false;
+            foreach (var cellItem in _dicIndexToCell)
+            {
+                cellItem.Value.gameObject.SetActive(true);
+                cellItem.Value.PlayOpenFx(true);
+                _eventCellUpdateSubject.OnNext((cellItem.Key, cellItem.Value));
             }
-            IsInitialized = true;
         }
+    }
 
-        protected abstract void OnValueChanged(Vector2 normalizedPosition);
-
-        public abstract void Refresh();
-
-        public virtual void Add(InfiniteCellData data)
+    protected void OnOpenFx()
+    {
+        if (useFirstOpenCellFx && _isFirstOpen)
         {
-            if (!IsInitialized)
-            {
-                Initialize();
-            }
-            data.Index = _dataList.Count;
-            _dataList.Add(data);
-            _cellList.Add(null);
+            foreach (var item in _dicIndexToCell)
+                PlayOpenCellFx(item.Key, item.Value, _dicIndexToCell.Count);
+
+            _isFirstOpen = false;
         }
-
-        public virtual void Remove(int index)
+        else
         {
-            if (!IsInitialized)
-            {
-                Initialize();
-            }
-            if (_dataList.Count == 0)
-                return;
-            _dataList.RemoveAt(index);
-            Refresh();
+            OnValueChanged(new Vector2(0, 0));
         }
+    }
 
-        public abstract void Snap(int index, float duration);
-
-        public void SnapLast(float duration)
+    protected void PlayOpenCellFx(int index, Cell_Base cell, int cellCount)
+    {
+        cell.gameObject.SetActive(false);
+        var openDelayTime = OpenCellFxDurationSec / cellCount * index;
+        Observable.Timer(TimeSpan.FromSeconds(openDelayTime)).Subscribe(_ =>
         {
-            Snap(_dataList.Count - 1, duration);
-        }
+            _eventCellUpdateSubject.OnNext((index, cell));
+            cell.gameObject.SetActive(true);
+            cell.PlayOpenFx(true);
+        }).AddTo(_subscribeCellFx);
+    }
 
-        protected void DoSnapping(Vector2 target, float duration)
+    protected void SetupCell(int index, Vector2 pos)
+    {
+        if (_dicIndexToCell.TryGetValue(index, out var cell) == false)
         {
-            if (!gameObject.activeInHierarchy)
-                return;
-            StopSnapping();
-            _snappingProcesser = StartCoroutine(ProcessSnapping(target, duration));
-        }
+            cell = cellPooling.Get();
+            cell.RectTransform.anchoredPosition = pos;
 
-        public void StopSnapping()
-        {
-            if (_snappingProcesser != null)
-            {
-                StopCoroutine(_snappingProcesser);
-                _snappingProcesser = null;
-            }
-        }
+            _dicIndexToCell.Add(index, cell);
+            _dicCellToIndex.Add(cell, index);
 
-        private IEnumerator ProcessSnapping(Vector2 target, float duration)
-        {
-            _scrollRect.velocity = Vector2.zero;
-            Vector2 startPos = _scrollRect.content.anchoredPosition;
-            float t = 0;
-            while (t < 1f)
-            {
-                if (duration <= 0)
-                    t = 1;
-                else
-                    t += Time.deltaTime / duration;
-                _scrollRect.content.anchoredPosition = Vector2.Lerp(startPos, target, t);
-                var normalizedPos = _scrollRect.normalizedPosition;
-                if (normalizedPos.y < 0 || normalizedPos.x > 1)
-                {
-                    break;
-                }
-                yield return null;
-            }
-            if (duration <= 0)
-                OnValueChanged(_scrollRect.normalizedPosition);
-            _snappingProcesser = null;
-        }
-
-        protected void SetupCell(int index, Vector2 pos)
-        {
-            if (_cellList[index] == null)
-            {
-                var cell = _cellPool.Dequeue();
-                cell.gameObject.SetActive(true);
-                cell.CellData = _dataList[index];
-                cell.RectTransform.anchoredPosition = pos;
-                _cellList[index] = cell;
-                cell.OnSelected += OnCellObjSelected;
-            }
-        }
-
-        protected void RecycleCell(int index)
-        {
-            if (_cellList[index] != null)
-            {
-                var cell = _cellList[index];
-                _cellList[index] = null;
-                _cellPool.Enqueue(cell);
+            if (useFirstOpenCellFx && _isFirstOpen)
                 cell.gameObject.SetActive(false);
-                cell.OnSelected -= OnCellObjSelected;
-            }
+            else
+                _eventCellUpdateSubject.OnNext((index, cell));
         }
+    }
 
-        private void OnCellObjSelected(GameObject selectedCell)
+    protected void RecycleCell(int index)
+    {
+        if (_dicIndexToCell.ContainsKey(index) == true)
         {
-            OnCellSelected?.Invoke(selectedCell);
-        }
+            var cell = _dicIndexToCell[index];
 
-        public virtual void Clear()
-        {
-            if (IsInitialized == false)
-                Initialize();
-            _scrollRect.velocity = Vector2.zero;
-            _scrollRect.content.anchoredPosition = Vector2.zero;
-            _dataList.Clear();
-            for (int i = 0; i < _cellList.Count; i++)
-            {
-                RecycleCell(i);
-            }
-            _cellList.Clear();
-            Refresh();
-        }
+            _dicIndexToCell.Remove(index);
+            _dicCellToIndex.Remove(cell);
 
-        protected override void OnRectTransformDimensionsChange()
-        {
-            base.OnRectTransformDimensionsChange();
-            if (_scrollRect)
-            {
-                OnRectTransformUpdate?.Invoke();
-            }
+            cellPooling.Release(cell);
         }
+    }
+
+    public virtual void ClearData()
+    {
+        if (IsInitialized == false)
+            Initialize();
+
+        dataList.Clear();
+
+        var keys = _dicIndexToCell.Keys.ToArray();
+        foreach (var key in keys)
+            RecycleCell(key);
+
+        _dicIndexToCell.Clear();
+        _dicCellToIndex.Clear();
+    }
+
+    public virtual void Clear()
+    {
+        if (IsInitialized == false)
+            Initialize();
+
+        scrollRect.velocity = Vector2.zero;
+        scrollRect.content.anchoredPosition = Vector2.zero;
+
+        dataList.Clear();
+
+        var keys = _dicIndexToCell.Keys.ToArray();
+        foreach (var key in keys)
+            RecycleCell(key);
+
+        _dicIndexToCell.Clear();
+        _dicCellToIndex.Clear();
+
+        Refresh();
+    }
+
+    public Vector2 GetCellSize(int index)
+    {
+        return dataList[index].cellSize;
+    }
+
+    public Vector2 GetPostion()
+    {
+        return scrollRect.content.anchoredPosition;
+    }
+
+    public void Snap(int index, float duration, bool center = false, float offset = 0, bool isReverse = false)
+    {
+        if (IsInitialized == false)
+            Initialize();
+
+        if (index >= dataList.Count)
+            return;
+
+        DoSnap(index, duration, center, offset, isReverse);
+    }
+
+    public void Snap(float width, float duration)
+    {
+        if (IsInitialized == false)
+            Initialize();
+
+        DoSnap(width, duration);
+    }
+
+    public virtual void SetPaddingLT(Vector2 padding)
+    {
+        paddingLT = padding;
+    }
+
+    public virtual void SetPaddingRB(Vector2 padding)
+    {
+        paddingRB = padding;
     }
 }
