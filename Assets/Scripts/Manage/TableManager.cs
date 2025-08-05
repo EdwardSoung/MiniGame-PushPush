@@ -31,9 +31,9 @@ public class TableManager : UnitySingleton<TableManager>
         return list.Find(arg => arg.Id == id);
     }
 
-    public List<JPropInfoData> GetPropInfoList(E_TABLE table)
+    public List<JPropInfoData> GetPropInfoList()
     {
-        return LoadTableAsset<JPropInfoData>(table).list;
+        return LoadTableAsset<JPropInfoData>(E_TABLE.JPropInfo).list;
     }
 
     public List<JPropInfoData> GetPropGroupList(int groupId)
@@ -42,7 +42,7 @@ public class TableManager : UnitySingleton<TableManager>
         return list.FindAll(arg => arg.PropGroupId == groupId);
     }
 
-    public List<JPropRateData> GetProbByType(string type)
+    public List<JPropRateData> GetProbRateByType(string type)
     {
         var list = LoadTableAsset<JPropRateData>(E_TABLE.JPropRate).list;
         return list.FindAll(arg => arg.PropType == type);
