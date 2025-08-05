@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 public class UIBase : MonoBehaviour
 {
+    protected readonly CompositeDisposable _disposable = new CompositeDisposable();
     public E_UI_ROOT_TYPE UI_ROOT_TYPE { get; private set; }
 
     public void SetUIBaseType(E_UI_ROOT_TYPE type)

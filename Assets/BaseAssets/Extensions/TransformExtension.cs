@@ -23,6 +23,16 @@ public static class TransformExtension
         return transform;
     }
 
+    public static RectTransform Reset(this Transform transform)
+    {
+        var rectTransform = transform as RectTransform;
+
+        rectTransform.anchoredPosition = Vector2.zero;
+        rectTransform.localScale = Vector2.one;
+
+        return rectTransform;
+    }
+
     public static RectTransform Reset(this RectTransform rectTransform, Transform parent, Vector2 deltaSize = default(Vector2))
     {
         if (parent != null)
