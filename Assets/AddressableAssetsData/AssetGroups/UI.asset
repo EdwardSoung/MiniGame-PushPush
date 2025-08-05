@@ -13,27 +13,10 @@ MonoBehaviour:
   m_Name: UI
   m_EditorClassIdentifier: 
   m_GroupName: UI
-  m_Data:
-    m_SerializedData: []
   m_GUID: 3115d9066d7b4c24e97374f1afcb7f51
   m_SerializeEntries:
-  - m_GUID: a60a125d71228c2439c4243f94f11716
-    m_Address: UIPanelStage
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f8ecb626509181c4a9efa22df6b85994
-    m_Address: UIPanelIntro
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9646fdfdbdc1b6848b40bb13fb43f6c0
-    m_Address: UIPanelLoadingIntro
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c650c17ca1e3596449e012da25c3abfb
-    m_Address: UIPanelLobby
+  - m_GUID: 1353263dc39e1a440966c85effd1dd00
+    m_Address: UIPanelStageResult
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -42,8 +25,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a1fe2133289ddb445ac88f9f02e4520d
-    m_Address: Lobby_Cowboy
+  - m_GUID: 2f218bca6441dbf408563044bfa7aaa2
+    m_Address: UI_Car
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -52,28 +35,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d8f31a905c882e8448d6854c3223b2a3
-    m_Address: Lobby_Female02
+  - m_GUID: 4c8dcfebf37ca83469e1b2a0e01d04eb
+    m_Address: UI_Crate
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1353263dc39e1a440966c85effd1dd00
-    m_Address: UIPanelStageResult
+  - m_GUID: 57890fa1521cd1949aa85ea05c9a7599
+    m_Address: UI_Cone
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 738fe28fed7fa44478c2529094b2df51
-    m_Address: UIPanelPlayerList
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 916a5b862bdde234696c5b9b1f8f7307
-    m_Address: RewardItem
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6e839e66f1f053248b2f6f478f7e6119
-    m_Address: UIPanelLoading
+  - m_GUID: 5bb241e08bd0e25469a92c78ee21b630
+    m_Address: ResultItem_Plane
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -82,8 +55,68 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6e839e66f1f053248b2f6f478f7e6119
+    m_Address: UIPanelLoading
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 738fe28fed7fa44478c2529094b2df51
+    m_Address: UIPanelPlayerList
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7d4d6cf5677f2f849904075c8b8b7ab2
+    m_Address: ResultItem_Crate
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8dfb73debaa6fe847bad5f88bc2e709f
     m_Address: PointItem_Car
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 916a5b862bdde234696c5b9b1f8f7307
+    m_Address: RewardItem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9646fdfdbdc1b6848b40bb13fb43f6c0
+    m_Address: UIPanelLoadingIntro
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1fe2133289ddb445ac88f9f02e4520d
+    m_Address: Lobby_Cowboy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a60a125d71228c2439c4243f94f11716
+    m_Address: UIPanelStage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a67a13a54dd042f42bf0285651574ae5
+    m_Address: ResultItem_Car
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b186e09efbee9f840a040f06ece30d40
+    m_Address: PointItem_Cone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c650c17ca1e3596449e012da25c3abfb
+    m_Address: UIPanelLobby
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8f31a905c882e8448d6854c3223b2a3
+    m_Address: Lobby_Female02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e49318d291956ea46be6600b504f6d18
+    m_Address: UI_Plane
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -92,8 +125,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b186e09efbee9f840a040f06ece30d40
-    m_Address: PointItem_Cone
+  - m_GUID: f4425a7a31b267c49b0ab9b726d75249
+    m_Address: ResultItem_Cone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8ecb626509181c4a9efa22df6b85994
+    m_Address: UIPanelIntro
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
