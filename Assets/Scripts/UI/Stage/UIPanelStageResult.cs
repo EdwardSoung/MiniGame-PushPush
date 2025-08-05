@@ -18,6 +18,8 @@ public class UIPanelStageResult : UIBase
 
     [SerializeField] private TextMeshProUGUI _totalPointText;
 
+    [SerializeField] private RewardItem[] _rewardItems;
+
     private List<KeyValuePair<int, int>> _propResults = new ();
     private Dictionary<int, JPropInfoData> _propInfoDict = new ();
 
@@ -44,20 +46,28 @@ public class UIPanelStageResult : UIBase
 
         foreach (var prop in propDict)
         {
-            //var table = TableManager.Instance.GetPropInfoById(prop.Key);
-
             _pointItemScrollView.Add(_pointItemScrollView.GetPrefabBoundSize);
             
-            //var obj = AddressableManager.Instance.Spawn(table.UIPrefabName, _pointItemRoot);
-            //var item = obj.GetComponent<PointItem>();
-            //item.transform.localScale = Vector3.one;
             totalPoint += _propInfoDict[prop.Key].Point * prop.Value;
-            //item.SetData(table, prop.Value);
         }
 
         _totalPointText.SetText(totalPoint.ToString());
 
         _pointItemScrollView.Refresh();
+
+        var stageReward = TableManager.Instance.GetStageReward(totalPoint);
+        var rewards = TableManager.Instance.GetRewardsByGroupId(stageReward.RewardGroup);
+
+        foreach (var item in _rewardItems)
+        {
+            item.gameObject.SetActive(false);
+        }
+
+        foreach (var reward in rewards)
+        {
+            _rewardItems[reward.Type].gameObject.SetActive(true);
+            _rewardItems[reward.Type].SetData(reward, reward.Amount);
+        }
 
         //TODO 먹은 코인, 보석 표기해야함
         //획득 리스트에 맞게 생성

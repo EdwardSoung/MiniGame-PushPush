@@ -10,8 +10,9 @@ public class RewardItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _countText;
     [SerializeField] private GameObject _bonusIcon;
 
-    public void SetData(JItemData item, int count, bool isBonus = false)
+    public void SetData(JRewardGroupData reward, int count, bool isBonus = false)
     {
+        var item = TableManager.Instance.GetItem(reward.ItemId);
         var icon = AddressableManager.Instance.LoadAssetAsync<Sprite>(item.ResourceName);
         _icon.sprite = icon;
         _icon.SetNativeSize();

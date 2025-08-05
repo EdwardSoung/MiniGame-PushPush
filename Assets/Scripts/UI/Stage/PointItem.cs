@@ -20,8 +20,8 @@ public class PointItem : Cell_Base
         {
             renderer.material = material;
         }
-        _propAmountText.text = $"x {count}";
-        _propPointText.text = $"[{data.Point}]";
+        _propAmountText.SetText($"x {count}");
+        _propPointText.SetText($"[{data.Point}]");
         _propTotalPointText.text = string.Format("{0:#,###}", count * data.Point);
     }
 }
