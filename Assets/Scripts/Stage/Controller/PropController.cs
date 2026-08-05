@@ -8,6 +8,9 @@ public class PropController : MonoBehaviour
 {
     [SerializeField] private GameObject _spawnFx;
     [SerializeField] private GameObject _trailFx;
+
+    [SerializeField] private int ExplodeMinRange = -45;
+    [SerializeField] private int ExplodeMaxRange = -30;
     //»ý¼º ½Ã FX
     private E_TEAM _hitTeam = E_TEAM.None;
 
@@ -53,7 +56,7 @@ public class PropController : MonoBehaviour
     public void Explode(int str, Vector3 position, float dist, E_TEAM team)
     {
         Vector3 dir = transform.position - position;
-        int rndAngle = Random.Range(-45, -30);
+        int rndAngle = Random.Range(ExplodeMinRange, ExplodeMaxRange);
         dir = Quaternion.AngleAxis(rndAngle, Vector3.right) * dir;
 
         _rigidBody.AddForce(dir.normalized * str * dist, ForceMode.Impulse);
