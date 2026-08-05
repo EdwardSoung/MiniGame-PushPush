@@ -16,4 +16,6 @@ public static class Constants
     public static readonly int STR_MAX = 60;
     public static readonly float RANGE_MAX = 3f;
     public static readonly float SPEED_MAX = 3f;
+
+    public static readonly int RATE_MAX = 10000;
 }

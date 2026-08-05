@@ -162,7 +162,7 @@ public class SpawnController : MonoBehaviour
         var rateTable = TableManager.Instance.GetProbRateByType(type);
 
         int curProb = 0;
-        int rnd = Random.Range(0, 10000);
+        int rnd = Random.Range(0, Constants.RATE_MAX);
         int groupId = 0;
         foreach (var rate in rateTable)
         {
@@ -176,7 +176,7 @@ public class SpawnController : MonoBehaviour
 
         var targets = TableManager.Instance.GetPropGroupList(groupId);
         curProb = 0;
-        rnd = Random.Range(0, 10000);
+        rnd = Random.Range(0, Constants.RATE_MAX);
         foreach (var prop in targets)
         {
             curProb += prop.GenRate;
