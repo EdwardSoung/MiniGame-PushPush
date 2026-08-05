@@ -1,3 +1,4 @@
+ï»¿using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,19 +15,60 @@ public class AddressableManager : UnitySingleton<AddressableManager>
     private bool _collectionCheck = false;
     private int _maxPoolSize = 100;
     private Dictionary<string, ObjectPool<GameObject>> _objectPoolDict = new();
+
+    //ë¡œë“œí•œ ì—ì…‹ ë³´ê´€
+    private Dictionary<string, AsyncOperationHandle> _assetHandleDict = new();
+
     protected override void AwakeSingleton()
     {
         base.AwakeSingleton();
         Addressables.InitializeAsync();
     }
-    public T LoadAssetAsync<T>(string name) where T : UnityEngine.Object
+    public T LoadAsset<T>(string name) where T : UnityEngine.Object
     {
-        var handle = Addressables.LoadAssetAsync<T>(name);
+        if (_assetHandleDict.TryGetValue(name, out var cached))
+        {
+            return cached.Result as T;
+        }
 
-        //¿ì¼±Àº µ¿±â½ÄÀ¸·Î. ÃßÈÄ ÇÊ¿ä½Ã ºñµ¿±â Ãß°¡
-        var result = handle.WaitForCompletion();
-        Addressables.Release(handle);
-        return result;
+        var handle = Addressables.LoadAssetAsync<T>(name);
+        handle.WaitForCompletion();
+
+        _assetHandleDict.Add(name, handle);
+        return handle.Result;
+    }
+
+    public async UniTask<T> LoadAssetAsync<T>(string name) where T : UnityEngine.Object
+    {
+        if (_assetHandleDict.TryGetValue(name, out var cached))
+        {
+            return cached.Result as T;
+        }
+
+        var handle = Addressables.LoadAssetAsync<T>(name);
+        await handle;                        // ë¡œë”© ì™„ë£Œê¹Œì§€ ëŒ€ê¸°
+
+        _assetHandleDict.Add(name, handle);
+        return handle.Result;
+    }
+
+    public void ReleaseAsset(string name)
+    {
+        if (_assetHandleDict.TryGetValue(name, out var handle))
+        {
+            Addressables.Release(handle);
+            _assetHandleDict.Remove(name);
+        }
+    }
+
+    //ë¡œë“œëœ ì—ì…‹ ì „ì²´ í•´ì œ(ì”¬ ì „í™˜ë˜ê±°ë‚˜ í• ë•Œ ìš©ë„)
+    public void ReleaseAllAssets()
+    {
+        foreach (var handle in _assetHandleDict.Values)
+        {
+            Addressables.Release(handle);
+        }
+        _assetHandleDict.Clear();
     }
 
     #region ObjectPool
@@ -34,7 +76,7 @@ public class AddressableManager : UnitySingleton<AddressableManager>
     {
         if(!_objectPoolDict.ContainsKey(name))
         {
-            var loaded = LoadAssetAsync<GameObject>(name);
+            var loaded = LoadAsset<GameObject>(name);
             _objectPoolDict.Add(name, CreateNewObjectPool(loaded, name));
         }
 
