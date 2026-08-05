@@ -55,7 +55,7 @@ public class UIManager : UnitySingleton<UIManager>
         }
         else
         {
-            var obj = AddressableManager.Instance.LoadAssetAsync<GameObject>(type.ToString());
+            var obj = AddressableManager.Instance.LoadAsset<GameObject>(type.ToString());
             
             _loadedUIDict.Add(type, obj);
             return GenerateUI(obj, E_UI_ROOT_TYPE.UI);
@@ -71,7 +71,7 @@ public class UIManager : UnitySingleton<UIManager>
         }
         else
         {
-            var obj = AddressableManager.Instance.LoadAssetAsync<GameObject>(type.ToString());
+            var obj = AddressableManager.Instance.LoadAsset<GameObject>(type.ToString());
             _loadedUIDict.Add(type, obj);
             return GenerateUI(obj, E_UI_ROOT_TYPE.System);
         }
@@ -85,7 +85,7 @@ public class UIManager : UnitySingleton<UIManager>
         }
         else
         {
-            var obj = AddressableManager.Instance.LoadAssetAsync<GameObject>(type.ToString());
+            var obj = AddressableManager.Instance.LoadAsset<GameObject>(type.ToString());
             _loadedUIDict.Add(type, obj);
             return GenerateUI(obj, E_UI_ROOT_TYPE.Loading);
         }

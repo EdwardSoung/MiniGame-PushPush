@@ -14,7 +14,7 @@ public class PointItem : Cell_Base
     {
         var uiProp = AddressableManager.Instance.Spawn(data.UIPrefabName, transform);
         uiProp.transform.Reset();
-        var material = AddressableManager.Instance.LoadAssetAsync<Material>(data.MaterialName);
+        var material = AddressableManager.Instance.LoadAsset<Material>(data.MaterialName);
         var renderers = uiProp.GetComponentsInChildren<Renderer>();
         foreach (var renderer in renderers)
         {

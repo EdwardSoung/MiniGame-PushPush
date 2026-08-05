@@ -15,7 +15,7 @@ public class TableManager : UnitySingleton<TableManager>
 
     private Wrapper<T> LoadTableAsset<T>(E_TABLE table)
     {
-        var asset = AddressableManager.Instance.LoadAssetAsync<TextAsset>(table.ToString());
+        var asset = AddressableManager.Instance.LoadAsset<TextAsset>(table.ToString());
         return JsonConvert.DeserializeObject<Wrapper<T>>(asset.text);
     }
 
