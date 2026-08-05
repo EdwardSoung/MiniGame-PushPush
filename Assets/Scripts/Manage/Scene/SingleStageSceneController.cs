@@ -1,4 +1,4 @@
-using FirstVillain.EventBus;
+Ôªøusing FirstVillain.EventBus;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,7 +31,7 @@ public class SingleStageSceneController : MonoBehaviour
 
     private void OnStartStage(EventStartStage e)
     {
-        //UI ª˝º∫
+        //UI ÏÉùÏÑ±
         _stageUI = UIManager.Instance.OpenUI(E_UI_TYPE.UIPanelStage) as UIPanelStage;
         StageManager.Instance.Init(e.SelectedPlayer, e.StageType);
     }

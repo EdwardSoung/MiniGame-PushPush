@@ -1,4 +1,4 @@
-using XUnityLibrary.EventBus;
+﻿using XUnityLibrary.EventBus;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +18,7 @@ public class LobbySceneController : MonoBehaviour
     private void OnStartLobby(EventStartLobby e)
     {
         UIManager.Instance.ResetUICam();
-        //�κ� UI Open
+        //로비 UI Open
         UIManager.Instance.OpenUI(E_UI_TYPE.UIPanelLobby);
         UIManager.Instance.CloseLoadingUI();
     }

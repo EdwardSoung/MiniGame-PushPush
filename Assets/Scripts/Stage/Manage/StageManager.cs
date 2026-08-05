@@ -1,4 +1,4 @@
-using FirstVillain.Entities;
+ï»¿using FirstVillain.Entities;
 using FirstVillain.EventBus;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,7 +29,7 @@ public class StageManager : UnitySingletonOnce<StageManager>
         _gemItem = 0;
         _state = E_STAGE_STATE.Ready;
         InitScore();
-        //TODO : UIÃÊ±âÈ­
+        //TODO : UIì´ˆê¸°í™”
         _currentPlayer = _spawnController.SpawnPlayer(player);       
         _spawnController.SpawnProps();
         _spawnController.SpawnItems();
@@ -72,7 +72,7 @@ public class StageManager : UnitySingletonOnce<StageManager>
     {
         if (_teamScoreDict.ContainsKey(team))
         {
-            //È¹µæ ¸ñ·Ïµµ ÆÀº°·Î...?
+            //íšë“ ëª©ë¡ë„ íŒ€ë³„ë¡œ...?
             if(_gotPropDict.ContainsKey(prop.Id))
             {
                 _gotPropDict[prop.Id]++;
@@ -95,19 +95,19 @@ public class StageManager : UnitySingletonOnce<StageManager>
     {
         switch(data.EffectType)
         {
-            default:
-                //È¿°ú Àû¿ë
-                break;
             case "Coin":
                 _coinItem += data.Value;
                 break;
             case "Gem":
                 _gemItem += data.Value;
                 break;
+            default:
+                //íš¨ê³¼ ì ìš©
+                break;
         }
     }
 
-    //ÇÃ·¹ÀÌ¾î ³«ÇÏÇßÀ» ¶§
+    //í”Œë ˆì´ì–´ ë‚™í•˜í–ˆì„ ë•Œ
     public void PlayerFall(PlayerController player)
     {
         _spawnController.RespawnPlayer(player);

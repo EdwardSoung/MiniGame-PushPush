@@ -1,4 +1,4 @@
-using FirstVillain.Entities;
+ï»¿using FirstVillain.Entities;
 using FirstVillain.EventBus;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class StageItem : MonoBehaviour
 {
-    //¾ÆÀÌÅÛ ¼¼ÆÃ
+    //ì•„ì´í…œ ì„¸íŒ…
     [SerializeField] private Transform _iconRoot;
 
     private float _rotateSpeed = 7;

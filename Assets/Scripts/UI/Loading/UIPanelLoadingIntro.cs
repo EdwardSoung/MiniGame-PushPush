@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -22,7 +22,7 @@ public class UIPanelLoadingIntro : UIBase
         EventBus.Instance.Unsubscribe<EventUpdateTableLadingProgress>(OnUpdateLoadingGauge);
     }
 
-    //°ÔÀÌÁö¿¡ ³ÖÀ»°Ô ¹ÌÈ®½Ç..
+    //ê²Œì´ì§€ì— ë„£ì„ê²Œ ë¯¸í™•ì‹¤..
     private void OnUpdateLoadingGauge(EventUpdateTableLadingProgress e)
     {
         _loadingSlider.value = e.Progress;

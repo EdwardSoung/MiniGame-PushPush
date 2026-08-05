@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEngine.SceneManagement;
 using XUnityLibrary.Singleton;
 
@@ -8,7 +8,7 @@ public class SceneLoadManager : UnitySingleton<SceneLoadManager>
     {
         if(mode == LoadSceneMode.Single)
         {
-            //·Îµù »©°í UI Á¤¸®
+            //ë¡œë”© ë¹¼ê³  UI ì •ë¦¬
             UIManager.Instance.ReleaseUI();
         }
         var handle = SceneManager.LoadSceneAsync(sceneName, mode);

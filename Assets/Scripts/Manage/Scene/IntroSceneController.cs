@@ -1,4 +1,4 @@
-using FirstVillain.Entities;
+ï»¿using FirstVillain.Entities;
 using System.Collections;
 using UnityEngine;
 using XUnityLibrary.EventBus;
@@ -26,7 +26,7 @@ public class IntroSceneController : MonoBehaviour
 
     private IEnumerator LoadingGauge()
     {
-        //°³¼ö ¾îÂîÇÒÁö °í¹Î...
+        //ê°œìˆ˜ ì–´ì°Œí• ì§€ ê³ ë¯¼...
         float maxGauge = 1;
         while (_loadedTableCount < maxGauge)
         {
