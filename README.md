@@ -11,6 +11,10 @@
 > EventBus 사용하여 옵저버 패턴 구현<br>
 > UniRx, UniTask 사용<br>
 
+<br>
+
+*유료 에셋 .gitignore에 추가하여 다운로드 시 제대로 동작하지 않을 수 있습니다.*
+
 <br><br>
 
 <h3>로비</h3>
