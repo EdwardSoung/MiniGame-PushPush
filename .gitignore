@@ -73,5 +73,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # Paid assets
-/[Aa]ssets/[Tt]hirdparty/*
-/[Aa]ssets/[Tt]hirdparty.meta
+/[Aa]ssets/[Pp]aidAssets/*
+/[Aa]ssets/[Pp]aidAssets.meta
