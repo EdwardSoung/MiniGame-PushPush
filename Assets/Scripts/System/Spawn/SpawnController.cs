@@ -175,14 +175,18 @@ public class SpawnController : MonoBehaviour
         }
 
         var targets = DataManager.Instance.Prop.GetPropGroupList(groupId);
-        curProb = 0;
-        rnd = Random.Range(0, Constants.RATE_MAX);
-        foreach (var prop in targets)
+
+        if(targets != null)
         {
-            curProb += prop.GenRate;
-            if (rnd < curProb)
+            curProb = 0;
+            rnd = Random.Range(0, Constants.RATE_MAX);
+            foreach (var prop in targets)
             {
-                return GenerateProp(prop, parent);
+                curProb += prop.GenRate;
+                if (rnd < curProb)
+                {
+                    return GenerateProp(prop, parent);
+                }
             }
         }
 
@@ -242,7 +246,9 @@ public class SpawnController : MonoBehaviour
             {
                 if (!_itemDict.ContainsValue(i))
                 {
-                    _itemDict.Add(SelectItem(i), i);
+                    var selectedItem = SelectItem(i);
+                    if(selectedItem)
+                        _itemDict.Add(selectedItem, i);
                     break;
                 }
             }
@@ -253,6 +259,11 @@ public class SpawnController : MonoBehaviour
     {
         int rnd = Random.Range(0, DataManager.Instance.StageItem.StageItemCount);
         var table = DataManager.Instance.StageItem.GetStageItemById(rnd);
+
+        if(table == null)
+        {
+            return null;
+        }
 
         var itemPrefab = AddressableManager.Instance.Spawn("StageItem", _itemSpawnPosList[pos]);
         itemPrefab.transform.localPosition = Vector3.zero;
