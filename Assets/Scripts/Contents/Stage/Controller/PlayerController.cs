@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private E_TEAM _currentTeam = E_TEAM.None;
     private PlayerInfo _tableData;
+
     public bool IsBlock { get; private set; }
 
     private void Start()
@@ -78,7 +79,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Push(float point)
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, _tableData.RANGE, LayerMask.NameToLayer("Objects"));
+        Collider[] colliders = Physics.OverlapSphere(transform.position, _tableData.RANGE, LayerMask.GetMask("Objects"));
 
         foreach (var collider in colliders)
         {

@@ -29,6 +29,7 @@ public class StageManager : UnitySingletonOnce<StageManager>
         _gemItem = 0;
         _state = E_STAGE_STATE.Ready;
         _teamScoreDict.Clear();
+        _gotPropDict.Clear();
 
         InitScore();
         //TODO : UI초기화
