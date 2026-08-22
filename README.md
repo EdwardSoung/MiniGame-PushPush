@@ -10,6 +10,7 @@
 > Addressable 사용하여 UI 등 프리팹 로드<br>
 > EventBus 사용하여 옵저버 패턴 구현<br>
 > UniRx, UniTask 사용<br>
+> [개인 dll 제작 프로젝트](https://github.com/EdwardSoung/XUnityLibrary) 
 
 <br>
 
