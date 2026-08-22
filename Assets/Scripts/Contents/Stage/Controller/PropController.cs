@@ -18,6 +18,11 @@ public class PropController : MonoBehaviour
 
     private JPropInfoData _data;
 
+    private void Awake()
+    {
+        _rigidBody = GetComponent<Rigidbody>();
+    }
+
     private void OnEnable()
     {
         _hitTeam = E_TEAM.None;
@@ -45,8 +50,6 @@ public class PropController : MonoBehaviour
         _trailFx.SetActive(false);
         //TODO : 생성 시 FX 추가해야함
         //_spawnFx.SetActive(true);
-
-        _rigidBody = GetComponent<Rigidbody>();
 
         _data = data;
 
