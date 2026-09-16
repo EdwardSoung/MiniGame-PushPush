@@ -1,4 +1,4 @@
-using FirstVillain.Entities;
+﻿using FirstVillain.Entities;
 using System.Collections.Generic;
 using UnityEngine;
 using XSystem.Singleton;
@@ -50,4 +50,19 @@ public class GameManager : UnitySingleton<GameManager>
         return _playerData.FindIndex(arg => arg == info);
     }
     #endregion Player Data
+
+    public void TestServer()
+    {
+        LoginRequest request = new LoginRequest()
+        {
+            ReqData = new ReqLogin()
+            {
+                userId = ""
+            }
+        };
+        NetworkManager.Instance.SendAsync<ReqLogin, ResLogin>(request);
+
+        //로그인 먼저 끝낼 방법 고민 필요...
+        //핸들러로 처리 고민... Response에 따라 알아서 처리...
+    }
 }
