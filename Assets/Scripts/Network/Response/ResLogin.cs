@@ -2,5 +2,5 @@
 
 public class ResLogin : BaseResData
 {
-
+    public string userToken;
 }
